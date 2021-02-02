@@ -1,0 +1,265 @@
+.wc-block-components-tabs .wc-block-components-tabs__list > .wc-block-components-tabs__item .wc-block-components-tabs__item-content > img.payflexi-payment-logo {
+    height: 2em;
+    margin-bottom: -0.7em;
+   }
+   
+   /* And this is for the products blocks IOK 2020-09-03 */
+   .wc-block-grid__product .payflexibuynow {
+   }
+   .wc-block-grid__product .single-product.button.payflexi-buy-now .inline.payflexi-logo.negative {
+       display: inline-block;
+       margin: 0 .2em;
+   }
+   .wc-block-grid__product .single-product.button.payflexi-buy-now {
+    min-width:15em;
+   }
+
+   /* end block stuff for now */
+
+form#vippsdata {
+    margin:0;
+   }
+   h2.confirmPayFlexiFlexibleCheckoutHeader {
+    margin-top: 0;
+   }
+   
+   
+   a.button.payflexi-flexible-checkout img {
+       max-width: 100%;
+       filter: drop-shadow( 0px 1px 2px #d7d7d7);
+   }
+   a.button.payflexi-flexible-checkout:hover img {
+       opacity: 0.9;
+   }
+   a.button.payflexi-flexible-checkout.disabled img {
+       opacity: 0.7;
+   }
+   
+   li.wc_payment_method.payment_method_payflexi img {
+       max-width: 145px;
+   }
+   
+   .wc-block-grid__products .wc-block-grid__product .wp-block-button__link.payflexi-buy-now, .woocommerce ul.products li.product .button.payflexi-buy-now, a.button.payflexi-buy-now {
+    color: #fff;
+    background-color: #3730A3;
+   }
+
+   .wc-block-grid__products .wc-block-grid__product .wp-block-button__link.payflexi-buy-now-cart, .woocommerce ul.products li.product .button.payflexi-buy-now-cart, a.button.payflexi-buy-now-cart {
+    color: #fff;
+    display: block;
+    background-color: #3730A3;
+    text-align: center;
+    font-size: 1.41575em;
+   }
+
+
+
+   
+   ul.products li.product a.button.payflexi-buy-now img {
+    margin:0px;
+    display:inline;
+   }
+   
+   a.button.payflexi-flexible-checkout {
+    background-color: #fff;
+    color: transparent;
+    vertical-align: bottom;
+    padding: 0;
+    margin-left:.5em;
+   }
+   a.button.payflexi-flexible-checkout:active, a.button.payflexi-buy-now:active {
+    border: 0;
+   }
+   a.button.payflexi-flexible-checkout:hover, a.button.vipps-buy-now:hover {
+    border: 0;
+   }
+   
+   .widget_shopping_cart a.button.payflexi-flexible-checkout {
+    color:transparent;
+    background-color: #fff;
+    float: none;
+    margin-top: .5em;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
+   }
+   
+   /* This is for a plugin I'm doing testing with. */
+   .woocommerce-cart-tab-container .widget_shopping_cart a.button.payflexi-flexible-checkout {
+    min-width: 190px;
+   }
+   
+   .vippslogincontainer {
+    width: 100%;
+    text-align: center;
+   }
+   
+   a.button.vipps-login {
+    vertical-align: bottom;
+    max-width: 250px;
+    color:transparent;
+    background-color: #fff;
+    margin: 1em auto;
+    min-width: 190px;
+    clear: both;
+    padding:0;
+   }
+   
+   /* Displays a 'vipps' information banner  */
+   .woocommerce-info.payflexi-info {
+    background-color: #fe5b24;
+   }
+   img.inline {
+    height: 2ex;
+    display:inline;
+    vertical-align: text-bottom;
+   }
+
+   
+   
+   .f_circleG{
+       position:absolute;
+       background-color:rgb(255,255,255);
+       height:22px;
+       width:22px;
+       border-radius:12px;
+           -o-border-radius:12px;
+           -ms-border-radius:12px;
+           -webkit-border-radius:12px;
+           -moz-border-radius:12px;
+       animation-name:f_fadeG;
+           -o-animation-name:f_fadeG;
+           -ms-animation-name:f_fadeG;
+           -webkit-animation-name:f_fadeG;
+           -moz-animation-name:f_fadeG;
+       animation-duration:1.2s;
+           -o-animation-duration:1.2s;
+           -ms-animation-duration:1.2s;
+           -webkit-animation-duration:1.2s;
+           -moz-animation-duration:1.2s;
+       animation-iteration-count:infinite;
+           -o-animation-iteration-count:infinite;
+           -ms-animation-iteration-count:infinite;
+           -webkit-animation-iteration-count:infinite;
+           -moz-animation-iteration-count:infinite;
+       animation-direction:normal;
+           -o-animation-direction:normal;
+           -ms-animation-direction:normal;
+           -webkit-animation-direction:normal;
+           -moz-animation-direction:normal;
+   }
+   #frotateG_01{
+       left:0;
+       top:51px;
+       animation-delay:0.45s;
+           -o-animation-delay:0.45s;
+           -ms-animation-delay:0.45s;
+           -webkit-animation-delay:0.45s;
+           -moz-animation-delay:0.45s;
+   }
+   #frotateG_02{
+       left:15px;
+       top:15px;
+       animation-delay:0.6s;
+           -o-animation-delay:0.6s;
+           -ms-animation-delay:0.6s;
+           -webkit-animation-delay:0.6s;
+           -moz-animation-delay:0.6s;
+   }
+   #frotateG_03{
+       left:51px;
+       top:0;
+       animation-delay:0.75s;
+           -o-animation-delay:0.75s;
+           -ms-animation-delay:0.75s;
+           -webkit-animation-delay:0.75s;
+           -moz-animation-delay:0.75s;
+   }
+   #frotateG_04{
+       right:15px;
+       top:15px;
+       animation-delay:0.9s;
+           -o-animation-delay:0.9s;
+           -ms-animation-delay:0.9s;
+           -webkit-animation-delay:0.9s;
+           -moz-animation-delay:0.9s;
+   }
+   #frotateG_05{
+       right:0;
+       top:51px;
+       animation-delay:1.05s;
+           -o-animation-delay:1.05s;
+           -ms-animation-delay:1.05s;
+           -webkit-animation-delay:1.05s;
+           -moz-animation-delay:1.05s;
+   }
+   #frotateG_06{
+       right:15px;
+       bottom:15px;
+       animation-delay:1.2s;
+           -o-animation-delay:1.2s;
+           -ms-animation-delay:1.2s;
+           -webkit-animation-delay:1.2s;
+           -moz-animation-delay:1.2s;
+   }
+   #frotateG_07{
+       left:51px;
+       bottom:0;
+       animation-delay:1.35s;
+           -o-animation-delay:1.35s;
+           -ms-animation-delay:1.35s;
+           -webkit-animation-delay:1.35s;
+           -moz-animation-delay:1.35s;
+   }
+   #frotateG_08{
+       left:15px;
+       bottom:15px;
+       animation-delay:1.5s;
+           -o-animation-delay:1.5s;
+           -ms-animation-delay:1.5s;
+           -webkit-animation-delay:1.5s;
+           -moz-animation-delay:1.5s;
+   }
+   @keyframes f_fadeG{
+       0%{
+           background-color:rgba(254,90,36,0.97);
+       }
+       100%{
+           background-color:rgb(255,255,255);
+       }
+   }
+   @-o-keyframes f_fadeG{
+       0%{
+           background-color:rgba(254,90,36,0.97);
+       }
+       100%{
+           background-color:rgb(255,255,255);
+       }
+   }
+   @-ms-keyframes f_fadeG{
+       0%{
+           background-color:rgba(254,90,36,0.97);
+       }
+       100%{
+           background-color:rgb(255,255,255);
+       }
+   }
+   @-webkit-keyframes f_fadeG{
+       0%{
+           background-color:rgba(254,90,36,0.97);
+       }
+   
+       100%{
+           background-color:rgb(255,255,255);
+       }
+   }
+   @-moz-keyframes f_fadeG{
+       0%{
+           background-color:rgba(254,90,36,0.97);
+       }
+   
+       100%{
+           background-color:rgb(255,255,255);
+       }
+   }
