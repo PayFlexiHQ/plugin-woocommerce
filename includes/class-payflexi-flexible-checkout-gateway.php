@@ -189,7 +189,7 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
 
         if (isset($_REQUEST['payflexi_txnref'])){
 
-            $payflexi_url = 'https://api.payflexi.test/merchants/transactions/' . sanitize_text_field( $_REQUEST['payflexi_txnref']);
+            $payflexi_url = 'https://api.payflexi.co/merchants/transactions/' . sanitize_text_field( $_REQUEST['payflexi_txnref']);
            
             $headers = array(
                 'Authorization' => 'Bearer ' . $this->secret_key
@@ -205,7 +205,7 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
 
             if ( ! is_wp_error( $request ) && 200 == wp_remote_retrieve_response_code( $request ) ) {
                 $payflexi_response = json_decode( wp_remote_retrieve_body( $request ));
-                ray($payflexi_response);
+          
                 if (!$payflexi_response->errors) {
                     $order_details  = explode( '_', $payflexi_response->data->reference );
                     $order_id  = (int) $order_details[0];
@@ -289,8 +289,6 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
 
         $event = json_decode( $json );
 
-        ray(['PayFlexi Webhook Event' => $event]);
-
         if ('transaction.approved' == $event->event ) {
             http_response_code(200);
             $order_details = explode( '_', $event->data->initial_reference);
@@ -327,7 +325,7 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
                 if($payflexi_ref !== $event->data->initial_reference){
                     $installment_amount_paid = get_post_meta($order->get_id(), '_installment_amount_paid', true );
                     $total_installment_amount_paid = $installment_amount_paid + $amount_paid;
-                    ray(['Total Amount Paid' => $total_installment_amount_paid]);
+                 
                     update_post_meta($order_id, '_installment_amount_paid', $total_installment_amount_paid, false);
                     if($total_installment_amount_paid >= $order_total){
                         $order->payment_complete( $event->data->initial_reference );

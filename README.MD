@@ -1,7 +1,5 @@
 # PayFlexi Flexible Checkout WooCommerce Payment Gateway
 
-**Contributors:** tubiz
-
 **Tags:** flexible checkout, installment payments, split payments, woocommerce, payment gateway, 
 
 **Requires at least:** 4.7
