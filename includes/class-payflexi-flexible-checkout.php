@@ -392,7 +392,7 @@ class PayFlexi_Flexible_Checkout {
             if (!$order) return;
             $payment_method = $order->get_payment_method(); 
             if($payment_method === 'payflexi-flexible-checkout'){
-                $amount_paid = get_post_meta($order->get_id(), '_installment_amount_paid', true );
+                $amount_paid = get_post_meta($order->get_id(), '_woo_payflexi_installment_amount_paid', true );
                 $installment_amount_paid = $amount_paid ? $amount_paid : 0;
                 $order_total = $order->get_total();
                 $balance_amount = $amount_paid ? number_format(($order_total - $installment_amount_paid), 2) : 0;

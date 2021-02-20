@@ -219,26 +219,25 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
                     $order_total        = $order->get_total();
                     $order_currency     = method_exists( $order, 'get_currency' ) ? $order->get_currency() : $order->get_order_currency();
                     $currency_symbol    = get_woocommerce_currency_symbol( $order_currency );
-                    $order_amount       = $payflexi_response->data->amount ? $payflexi_response->data->amount : 0;
-                    $amount_paid        = $payflexi_response->data->txn_amount ? $payflexi_response->data->txn_amount : 0;
+                    $order_amount       = $payflexi_response->data->amount;
+                    $amount_paid        = $payflexi_response->data->txn_amount;
                     $payflexi_ref       = $payflexi_response->data->reference;
                     $payment_currency   = strtoupper( $payflexi_response->data->currency);
                     $gateway_symbol     = get_woocommerce_currency_symbol($payment_currency);
 
                     // check if the amount paid is equal to the order amount.
 					if ($amount_paid < $order_total ) {
+                        add_post_meta( $order_id, '_woo_payflexi_transaction_id', $payflexi_ref, true );
+                        update_post_meta( $order_id, '_woo_payflexi_order_amount', $order_amount);
+                        update_post_meta( $order_id, '_woo_payflexi_installment_amount_paid', $amount_paid);
                         $order->update_status( 'on-hold', '' );
-                        add_post_meta( $order_id, '_transaction_id', $payflexi_ref, true );
-                        add_post_meta( $order_id, '_installment_amount_paid', $amount_paid, false);
-						// Add Admin Order Note
-						$admin_order_note = sprintf( __( '<strong>New Installment Order</strong>%1$sThis order is partial paid using PayFlexi Flexible Checkout.%2$sAmount Paid was <strong>%3$s (%4$s)</strong> while the total order amount is <strong>%5$s (%6$s)</strong>%7$s<strong>PayFlexi Transaction Reference:</strong> %8$s', 'payflexi-flexible-checkout-for-woocommerce' ), '<br />', '<br />', $currency_symbol, $amount_paid, $currency_symbol, $order_total, '<br />', $payflexi_ref );
+						$admin_order_note = sprintf( __( '<strong>New Installment Order</strong>%1$sThis order is partially paid using PayFlexi Flexible Checkout.%2$sAmount Paid was <strong>%3$s (%4$s)</strong> while the total order amount is <strong>%5$s (%6$s)</strong>%7$s<strong>PayFlexi Transaction Reference:</strong> %8$s', 'payflexi-flexible-checkout-for-woocommerce' ), '<br />', '<br />', $currency_symbol, $amount_paid, $currency_symbol, $order_total, '<br />', $payflexi_ref );
 						$order->add_order_note( $admin_order_note );
 
 						function_exists( 'wc_reduce_stock_levels' ) ? wc_reduce_stock_levels( $order_id ) : $order->reduce_order_stock();
 
                         wc_empty_cart();
                     }else{
-                        add_post_meta( $order_id, '_installment_amount_paid', $amount_paid, false);
                         $order->payment_complete( $payflexi_ref );
                         $order->add_order_note( sprintf( 'Payment via PayFlexi Flexible Checkout successful (Transaction Reference: %s)', $payflexi_ref ) );
                         function_exists( 'wc_reduce_stock_levels' ) ? wc_reduce_stock_levels( $order_id ) : $order->reduce_order_stock();
@@ -289,16 +288,11 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
 
         $event = json_decode( $json );
 
-        if ('transaction.approved' == $event->event ) {
+        if ('transaction.approved' == $event->event && 'approved' == $event->data->status) {
             http_response_code(200);
             $order_details = explode( '_', $event->data->initial_reference);
             $order_id = (int) $order_details[0];
             $order = wc_get_order($order_id);
-            $payflexi_txn_ref  = get_post_meta( $order_id, '_payflexi_txn_ref', true );
-
-            if ( $event->data->initial_reference != $payflexi_txn_ref ) {
-                exit;
-            }
 
             if ( in_array( $order->get_status(), array( 'processing', 'completed' ) ) ) {
                 exit;
@@ -307,36 +301,42 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
             $order_currency     = method_exists( $order, 'get_currency' ) ? $order->get_currency() : $order->get_order_currency();
             $currency_symbol    = get_woocommerce_currency_symbol( $order_currency );
             $order_total        = $order->get_total();
-            $order_amount       = $event->data->amount ? $event->data->amount : 0;
-            $amount_paid        = $event->data->txn_amount ? $event->data->txn_amount : 0;
-            $payflexi_ref       = $event->data->reference;
-            $payment_currency   = strtoupper( $event->data->currency);
-            $gateway_symbol     = get_woocommerce_currency_symbol($payment_currency);
-            if ($amount_paid < $order_total ) {
-                if($payflexi_ref === $event->data->initial_reference){
-                    add_post_meta($order_id, '_transaction_id', $payflexi_ref, true);
-                    add_post_meta($order_id, '_installment_amount_paid', $amount_paid, false);
+            $order_amount       = get_post_meta($order_id, '_woo_payflexi_order_amount', true);
+            $order_amount       = $order_amount ? $order_amount : $event->data->amount;
+            $amount_paid        = $event->data->txn_amount;
+            
+            $saved_txn_ref      = get_post_meta( $order_id, '_woo_payflexi_transaction_id', true );
+            $txn_ref            = $event->data->reference;
+            $initial_txn_ref    = $event->data->initial_reference;
+
+            $installment_amount_paid = get_post_meta($order_id, '_woo_payflexi_installment_amount_paid', true );
+
+            if ($amount_paid < $order_amount ) {
+                if($txn_ref === $initial_txn_ref && empty($saved_txn_ref)){
+                    update_post_meta( $order_id, '_woo_payflexi_transaction_id', $txn_ref, true );
+                    update_post_meta( $order_id, '_woo_payflexi_order_amount', $order_amount);
+                    update_post_meta( $order_id, '_woo_payflexi_installment_amount_paid', $amount_paid);
                     $order->update_status('on-hold', '');
-                    // Add Admin Order Note
-                    $admin_order_note = sprintf( __( '<strong>New Installment Order</strong>%1$sThis order is partial paid using PayFlexi Flexible Checkout.%2$sAmount Paid was <strong>%3$s (%4$s)</strong> while the total order amount is <strong>%5$s (%6$s)</strong>%7$s<strong>PayFlexi Transaction Reference:</strong> %8$s', 'payflexi-flexible-checkout-for-woocommerce' ), '<br />', '<br />', $currency_symbol, $amount_paid, $currency_symbol, $order_total, '<br />', $payflexi_ref );
+                    $admin_order_note = sprintf( __( '<strong>New Installment Order</strong>%1$sThis order is partial paid using PayFlexi Flexible Checkout.%2$sAmount Paid was <strong>%3$s (%4$s)</strong> while the total order amount is <strong>%5$s (%6$s)</strong>%7$s<strong>PayFlexi Transaction Reference:</strong> %8$s', 'payflexi-flexible-checkout-for-woocommerce' ), '<br />', '<br />', $currency_symbol, $amount_paid, $currency_symbol, $order_amount, '<br />', $txn_ref );
                     $order->add_order_note( $admin_order_note );
                     wc_empty_cart();
                 }
-                if($payflexi_ref !== $event->data->initial_reference){
-                    $installment_amount_paid = get_post_meta($order->get_id(), '_installment_amount_paid', true );
+                if($txn_ref !== $initial_txn_ref){
                     $total_installment_amount_paid = $installment_amount_paid + $amount_paid;
-                 
-                    update_post_meta($order_id, '_installment_amount_paid', $total_installment_amount_paid, false);
-                    if($total_installment_amount_paid >= $order_total){
-                        $order->payment_complete( $event->data->initial_reference );
-                        $order->add_order_note( sprintf( 'PayFlexi Installment Payment Completed (Transaction Reference: %s)', $event->data->initial_reference ) );
+                    if($total_installment_amount_paid >= $order_amount){
+                        update_post_meta($order_id, '_woo_payflexi_installment_amount_paid', $total_installment_amount_paid);
+                        $order->payment_complete( $txn_ref );
+                        $order->add_order_note( sprintf( 'PayFlexi Installment Payment Completed (Transaction Reference: %s)', $txn_ref ) );
                     }else{
+                        update_post_meta($order_id, '_woo_payflexi_installment_amount_paid', $total_installment_amount_paid);
                         $order->update_status('on-hold', '');
+                        $admin_order_note = sprintf( __( '%1$sThis order is currently partially paid using PayFlexi Flexible Checkout.%2$sAmount Paid was <strong>%3$s (%4$s)</strong> while the total order amount is <strong>%5$s (%6$s)</strong>%7$s<strong>PayFlexi Transaction Reference:</strong> %8$s', 'payflexi-flexible-checkout-for-woocommerce' ), '<br />', '<br />', $currency_symbol, $amount_paid, $currency_symbol, $order_amount, '<br />', $txn_ref );
+                        $order->add_order_note( $admin_order_note );
                     }
                 }
             }else{
-                $order->payment_complete( $payflexi_ref );
-                $order->add_order_note( sprintf( 'Payment via PayFlexi Flexible Checkout successful (Transaction Reference: %s)', $payflexi_ref ) );
+                $order->payment_complete( $txn_ref );
+                $order->add_order_note( sprintf( 'Payment via PayFlexi Flexible Checkout successful (Transaction Reference: %s)', $txn_ref ) );
                 wc_empty_cart();
             }
         }
