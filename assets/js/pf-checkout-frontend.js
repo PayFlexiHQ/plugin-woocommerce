@@ -88,7 +88,7 @@
             meta: PayflexiFlexibleCheckoutPaymentCustomFields(),
             onSuccess: payflexi_callback,
             onExit: function() {
-                $( this.el ).unblock();
+                window.location.reload();
             },
             onDecline: function (response) {
                 console.log(response);
