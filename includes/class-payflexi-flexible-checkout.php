@@ -142,7 +142,7 @@ class PayFlexi_Flexible_Checkout {
 
         if (is_product()) {
             $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-            wp_enqueue_script( 'payflexi_flexible_checkout_sdk', 'https://payflexi.test/js/v1/global-payflexi.js', array(), null, false);
+            wp_enqueue_script( 'payflexi_flexible_checkout_sdk', 'https://payflexi.co/js/v1/global-payflexi.js', array(), null, false);
             wp_enqueue_script(
                 'payflexi_flexible_checkout_frontend',
                 PAYFLEXI_FLEXIBLE_CHECKOUT_ASSETS_URL . '/js/pf-checkout-frontend' . $suffix . '.js',
@@ -158,7 +158,7 @@ class PayFlexi_Flexible_Checkout {
 
         if (is_cart()) {
             $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-            wp_enqueue_script( 'payflexi_flexible_checkout_sdk', 'https://payflexi.test/js/v1/global-payflexi.js', array(), null, false);
+            wp_enqueue_script( 'payflexi_flexible_checkout_sdk', 'https://payflexi.co/js/v1/global-payflexi.js', array(), null, false);
             wp_enqueue_script(
                 'payflexi_flexible_checkout_frontend',
                 PAYFLEXI_FLEXIBLE_CHECKOUT_ASSETS_URL . '/js/pf-checkout-frontend' . $suffix . '.js',
@@ -174,7 +174,7 @@ class PayFlexi_Flexible_Checkout {
 
         if (is_checkout()) {
             $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-            wp_enqueue_script( 'payflexi_flexible_checkout_sdk', 'https://payflexi.test/js/v1/global-payflexi.js', array(), null, false);
+            wp_enqueue_script( 'payflexi_flexible_checkout_sdk', 'https://payflexi.co/js/v1/global-payflexi.js', array(), null, false);
             wp_enqueue_script(
                 'payflexi_flexible_checkout_frontend',
                 PAYFLEXI_FLEXIBLE_CHECKOUT_ASSETS_URL . '/js/pf-checkout-frontend' . $suffix . '.js',
@@ -202,7 +202,7 @@ class PayFlexi_Flexible_Checkout {
             // }
 
             $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-            wp_enqueue_script( 'payflexi_flexible_checkout_sdk', 'https://payflexi.test/js/v1/global-payflexi.js', array(), null, false);
+            wp_enqueue_script( 'payflexi_flexible_checkout_sdk', 'https://payflexi.co/js/v1/global-payflexi.js', array(), null, false);
             wp_enqueue_script(
                 'payflexi_flexible_checkout_frontend',
                 PAYFLEXI_FLEXIBLE_CHECKOUT_ASSETS_URL . '/js/pf-checkout-frontend' . $suffix . '.js',

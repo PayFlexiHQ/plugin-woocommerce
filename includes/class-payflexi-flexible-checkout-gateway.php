@@ -189,7 +189,7 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
 
         if (isset($_REQUEST['payflexi_txnref'])){
 
-            $payflexi_url = 'https://api.payflexi.test/merchants/transactions/' . sanitize_text_field( $_REQUEST['payflexi_txnref']);
+            $payflexi_url = 'https://api.payflexi.co/merchants/transactions/' . sanitize_text_field( $_REQUEST['payflexi_txnref']);
            
             $headers = array(
                 'Authorization' => 'Bearer ' . $this->secret_key
