@@ -14,21 +14,20 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 = Use Case for PayFlexi =
 
-The opportunity to split the payment into several parts can increase the number of orders and facilitate the conversion of doubting users, especially if you are selling an expensive course. 
-PayFlexi allows your customers to pay for courses immediately by paying the down payment and pay the remaining amount later in installments. Here are some benefits;
+The opportunity to split the payment into several parts can increase the number of orders and facilitate the conversion of doubting customers, especially if you are selling an high value products. 
+PayFlexi allows your customers to buy products just by paying down payment at the time of purchase and remaining amount to be paid later in easy installments. Here are some benefits;
 
-* Sell your premium courses at the right price without looking expensive.
-* Start accepting down payment for courses ahead of launch (pre-order).
-* Increase the average order and motivate your customers to pay for more expensive courses.
+* Sell your high-value items at the right price without looking expensive.
+* Start accepting down payment for products ahead of launch (pre-order).
+* Increase the average order and motivate your customers to pay for more high-value items.
 * Builds a trustworthy relationship between your business and the customers.
-* Create an easy payment experience for your customers.
+* Create an easy payment experience for your customers who cannot pay the full amount beforehand to prevent losing their orders.
 * Immediate cash flow
 
 = Features =
 
 * Accept one-time payment or installment payment from your customers.
 * Let customers customize plans within the limits that you set.
-* Customers are automatically enrolled into a course after they complete their payment.
 * Set the minimum amount to enable for installment payment.
 * Set the minimum amount to enable for weekly or monthly installment payment.
 * Accept payments via your existing payment processor and get paid instantly.
@@ -50,11 +49,11 @@ New Payment Gateways will be added regularly. If there is a Payment Gateway that
 = Automatic Installation =
 * 	Login to your WordPress Admin area
 * 	Go to "Plugins > Add New" from the left hand menu
-* 	In the search box type __PayFlexi Installment Payment Gateway for LifterLMS__
-*	From the search result you will see __PayFlexi Installment Payment Gateway for LifterLMS__ click on __Install Now__ to install the plugin
+* 	In the search box type __PayFlexi Flexible Payment & Fast Checkout__
+*	From the search result you will see __PayFlexi Flexible Payment & Fast Checkout__ click on __Install Now__ to install the plugin
 *	A popup window will ask you to confirm your wish to install the Plugin.
 *	After installation, activate the plugin.
-* 	Open the settings page for LifterLMS and click the "Checkout" tab.
+* 	Open the settings page for Woocommerce and click the "Checkout" tab.
 * 	Click on the __PayFlexi__ link from the available Checkout Options
 *	Configure your __PayFlexi Payment Gateway__ settings. See below for details.
 
@@ -63,12 +62,12 @@ New Payment Gateways will be added regularly. If there is a Payment Gateway that
 * 	Login to your WordPress Admin. Click on "Plugins > Add New" from the left hand menu.
 *  Click on the "Upload" option, then click "Choose File" to select the zip file from your computer. Once selected, press "OK" and press the "Install Now" button.
 *  Activate the plugin.
-* 	Open the settings page for LifterLMS and click the "Checkout" tab.
+* 	Open the settings page for Woocommerce and click the "Checkout" tab.
 * 	Click on the __PayFlexi__ link from the available Checkout Options
 *	Configure your __PayFlexi Payment Gateway__ settings. See below for details.
 
 = Configure the plugin =
-To configure the plugin, go to __LifterLMS > Settings__ from the left hand menu, then click __Checkout__ from the top tab. You will see __PayFlexi__ as part of the available Checkout Options. Click on it to configure the payment gateway.
+To configure the plugin, go to __Woocommerce > Settings__ from the left hand menu, then click __Checkout__ from the top tab. You will see __PayFlexi__ as part of the available Checkout Options. Click on it to configure the payment gateway.
 
 * __Enable/Disable__ - check the box to enable PayFlexi Payment Gateway.
 * __Title__ - allows you to determine what your customers will see this payment option as on the checkout page.
@@ -92,9 +91,9 @@ Get timely and friendly support at, [PayFlexi Support](https://support.payflexi.
 
 2. PayFlexi Woocommerce Payment Gateway on the checkout page
 
-3. PayFlexi Payment Plans Selection
+3. Customer checkout session validation
 
-4. PayFlexi Woocommerce Transactions History
+4. PayFlexi Payment Plans Selection
 
 5. PayFlexi Merchant Dashboard Schedule History
 

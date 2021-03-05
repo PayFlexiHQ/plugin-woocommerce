@@ -274,7 +274,7 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
      * Process Webhook
      */
     public function process_webhooks() {
-
+   
         if ( ( strtoupper( $_SERVER['REQUEST_METHOD'] ) != 'POST' ) || ! array_key_exists('HTTP_X_PAYFLEXI_SIGNATURE', $_SERVER) ) {
             exit;
         }
@@ -312,8 +312,8 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
             $installment_amount_paid = get_post_meta($order_id, '_woo_payflexi_installment_amount_paid', true );
 
             if ($amount_paid < $order_amount ) {
-                if($txn_ref === $initial_txn_ref && empty($saved_txn_ref)){
-                    update_post_meta( $order_id, '_woo_payflexi_transaction_id', $txn_ref, true );
+                if($txn_ref === $initial_txn_ref && (!$saved_txn_ref || empty($saved_txn_ref))){
+                    add_post_meta( $order_id, '_woo_payflexi_transaction_id', $txn_ref, true );
                     update_post_meta( $order_id, '_woo_payflexi_order_amount', $order_amount);
                     update_post_meta( $order_id, '_woo_payflexi_installment_amount_paid', $amount_paid);
                     $order->update_status('on-hold', '');
@@ -321,7 +321,7 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
                     $order->add_order_note( $admin_order_note );
                     wc_empty_cart();
                 }
-                if($txn_ref !== $initial_txn_ref){
+                if($txn_ref !== $initial_txn_ref && (!$saved_txn_ref || !empty($saved_txn_ref))){
                     $total_installment_amount_paid = $installment_amount_paid + $amount_paid;
                     if($total_installment_amount_paid >= $order_amount){
                         update_post_meta($order_id, '_woo_payflexi_installment_amount_paid', $total_installment_amount_paid);
