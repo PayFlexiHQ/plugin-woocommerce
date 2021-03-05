@@ -9,7 +9,7 @@
     License: GPLv2 or later
     License URI: http://www.gnu.org/licenses/gpl-2.0.txt
     WC requires at least: 3.8.0
-    WC tested up to: 4.7.1
+    WC tested up to: 5.0.0
 */
 if ( ! defined( 'ABSPATH' ) ) {
     exit;

@@ -1,29 +1,97 @@
-# PayFlexi Flexible Checkout WooCommerce Payment Gateway
+# PayFlexi Flexible Payment & Fast Checkout
 
-**Tags:** flexible checkout, installment payments, split payments, woocommerce, payment gateway, 
+**PayFlexi Flexible Payment & Fast Checkout plugin for Woocommerce is a payment option that allows you to accept installment or full payments from your customers before getting access to the product**. 
 
-**Requires at least:** 4.7
+### Use Case for PayFlexi
 
-**Tested up to:** 5.6
+The opportunity to split the payment into several parts can increase the number of orders and facilitate the conversion of doubting users, especially if you are selling an expensive course. 
+PayFlexi allows your customers to pay for courses immediately by paying the down payment and pay the remaining amount later in installments. Here are some benefits;
 
-**Stable tag:** 5.6.2
+* Sell your premium courses at the right price without looking expensive.
+* Start accepting down payment for courses ahead of launch (pre-order).
+* Increase the average order and motivate your customers to pay for more expensive courses.
+* Builds a trustworthy relationship between your business and the customers.
+* Create an easy payment experience for your customers.
+* Immediate cash flow
 
-**License:** GPLv2 or later
+### Features
 
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+* Accept one-time payment or installment payment from your customers.
+* Let customers customize plans within the limits that you set.
+* Customers are automatically enrolled into a course after they complete their payment.
+* Set the minimum amount to enable for installment payment.
+* Set the minimum amount to enable for weekly or monthly installment payment.
+* Accept payments via your existing payment processor and get paid instantly.
+* Manage and view all payment schedules from your dedicated merchant dashboard.
+* Customers have access to dedicated dashboard for managing their payment schedules.
 
-PayFlexi Flexible Checkout WooCommerce Payment Gateway allows you to accept installment payments from your customers online.
+With PayFlexi, you can bring your existing payment processor to accept payment. We currently support;
 
-## Description
+* __Stripe__
+* __PayStack__
+* __Flutterwave__
 
-PayFlexi flexible & one-click plugin for woocommerce is a payment option that lets your customers to spread the cost of an order in several installments with zero (0%) interest and also able to checkout in just one-click
+* To signup for a PayFlexi Merchant account visit their website by clicking [here](https://merchant.payflexi.co)
 
-To signup for a PayFlexi Merchant account visit their website by clicking [here](https://merchant.payflexi.co)
+New Payment Gateways will be added regularly. If there is a Payment Gateway that you need urgently or a feature missing that you think we must add, [get in touch with us](https://payflexi.co/contact/) and we will consider it.
+### Installation 
 
-PayFlexi works with your existing payment processing and we currently support these gateways:
+#### Automatic Installation
+* 	Login to your WordPress Admin area
+* 	Go to "Plugins > Add New" from the left hand menu
+* 	In the search box type __PayFlexi Installment Payment Gateway for LifterLMS__
+*	From the search result you will see __PayFlexi Installment Payment Gateway for LifterLMS__ click on __Install Now__ to install the plugin
+*	A popup window will ask you to confirm your wish to install the Plugin.
+*	After installation, activate the plugin.
+* 	Open the settings page for LifterLMS and click the "Checkout" tab.
+* 	Click on the __PayFlexi__ link from the available Checkout Options
+*	Configure your __PayFlexi Payment Gateway__ settings. See below for details.
 
-- **Stripe**
-- **PayStack**
-- **Flutterwave**
+#### Manual Installation
+* 	Download the plugin zip file
+* 	Login to your WordPress Admin. Click on "Plugins > Add New" from the left hand menu.
+*  Click on the "Upload" option, then click "Choose File" to select the zip file from your computer. Once selected, press "OK" and press the "Install Now" button.
+*  Activate the plugin.
+* 	Open the settings page for LifterLMS and click the "Checkout" tab.
+* 	Click on the __PayFlexi__ link from the available Checkout Options
+*	Configure your __PayFlexi Payment Gateway__ settings. See below for details.
 
-### Note
+= Configure the plugin =
+To configure the plugin, go to __LifterLMS > Settings__ from the left hand menu, then click __Checkout__ from the top tab. You will see __PayFlexi__ as part of the available Checkout Options. Click on it to configure the payment gateway.
+
+* __Enable/Disable__ - check the box to enable PayFlexi Payment Gateway.
+* __Title__ - allows you to determine what your customers will see this payment option as on the checkout page.
+* __Description__ - controls the message that appears under the payment fields on the checkout page.
+* __Test Mode__ - Check to enable test mode. Test mode enables you to test payments before going live. If you ready to start receving real payment on your site, kindly uncheck this.
+* __Test Secret API Key__ - Enter your Test Secret Key here. Get your API keys from your PayFlexi Merchant Account under Developer > API
+* __Test Public API Key__ - Enter your Test Public Key here. Get your API keys from your PayFlexi Merchant Account under Developer > API
+* __Live Secret API Key__ - Enter your Live Secret Key here. Get your API keys from your PayFlexi Merchant Account under Developer > API
+* __Live Public API Key__ - Enter your Live Public Key here. Get your API keys from your PayFlexi Merchant Account under Developer > API
+* Click on __Save Changes__ for the changes you made to be effected.
+
+<strong>You have to set the Webhook URL in the [API Keys & Webhooks](https://merchant.payflexi.co/developers?tab=api-keys-integrations) settings page in your PayFlexi Merchant Account</strong>. Go to the plugin settings page for more information.
+
+### Support
+
+Get timely and friendly support at, [PayFlexi Support](https://support.payflexi.co)
+
+### Screenshots
+
+1. PayFlexi Woocommerce Payment Gateway Setting Page
+
+2. PayFlexi Woocommerce Payment Gateway on the checkout page
+
+3. PayFlexi Payment Plans Selection
+
+4. PayFlexi Woocommerce Transactions History
+
+5. PayFlexi Merchant Dashboard Schedule History
+
+### Changelog
+
+#### 1.1.0 - March 15, 2021 
+*  New version
+*  Added admin view of installment and balance
+
+#### 1.0.0 - July 15, 2020
+*   First release

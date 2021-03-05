@@ -58,10 +58,7 @@ class PayFlexi_Flexible_Checkout {
      * @access   private
      */
     private function load_dependencies() {
-		/**
-         * The class responsible for orchestrating the actions and filters of the
-         * core plugin.
-         */
+
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-payflexi-flexible-checkout-loader.php';
 
         if (class_exists('WC_Payment_Gateway')) {
@@ -371,7 +368,6 @@ class PayFlexi_Flexible_Checkout {
     public function add_custom_balance_and_paid_column($columns)
     {
         $reordered_columns = array();
-        // Inserting columns to a specific location
         foreach( $columns as $key => $column){
             $reordered_columns[$key] = $column;
             if( $key ==  'order_status' ){
