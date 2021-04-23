@@ -3,13 +3,13 @@
     Plugin Name: PayFlexi Flexible Payment & Fast Checkout
     Plugin URI: https://developers.payflexi.co
     Description: Enable you customer to pay in flexible instalments with one-click checkout
-    Version: 1.1.0
+    Version: 1.2.0
     Author: PayFlexi
     Author URI: https://payflexi.co
     License: GPLv2 or later
     License URI: http://www.gnu.org/licenses/gpl-2.0.txt
     WC requires at least: 3.8.0
-    WC tested up to: 5.0.0
+    WC tested up to: 5.2.2
 */
 if ( ! defined( 'ABSPATH' ) ) {
     exit;

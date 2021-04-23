@@ -80,6 +80,7 @@
 
         var handler = PayFlexi.checkout({
             key: payflexi_flexible_checkout_params.key,
+            gateway: payflexi_flexible_checkout_params.gateway,
             amount:amount,
             email: payflexi_flexible_checkout_params.email,
             name: payflexi_flexible_checkout_params.name,

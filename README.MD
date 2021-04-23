@@ -90,6 +90,9 @@ Get timely and friendly support at, [PayFlexi Support](https://support.payflexi.
 
 ### Changelog
 
+#### 1.2.0 - April 24, 2021 
+*  Added support for Paystack payment gateway
+
 #### 1.1.0 - March 15, 2021 
 *  New version
 *  Added admin view of installment and balance

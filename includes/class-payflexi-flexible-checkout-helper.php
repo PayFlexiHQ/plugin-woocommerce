@@ -43,6 +43,11 @@ if ( ! class_exists( 'PayFlexi_Flexible_Checkout_Helper' ) ) {
 			return $public_key;
 		}
 
+		public function payflexi_flexible_checkout_gateway(){
+			$gateway  = $this->payflexi_checkout_get_option('gateway');
+			return $gateway;
+		}
+
     }
 }
 

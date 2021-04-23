@@ -137,7 +137,8 @@ class PayFlexi_Flexible_Checkout {
     public function init_website_assets() {
 
         $payflexi_flexible_checkout_params = array(
-            'key'  => $this->payflexi_checkout_helper->payflexi_flexible_checkout_public_key()
+            'key'  => $this->payflexi_checkout_helper->payflexi_flexible_checkout_public_key(),
+            'gateway'  => $this->payflexi_checkout_helper->payflexi_flexible_checkout_gateway()
         );
 
         if (is_product()) {

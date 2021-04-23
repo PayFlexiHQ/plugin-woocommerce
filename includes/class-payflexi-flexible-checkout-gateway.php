@@ -288,6 +288,8 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
 
         $event = json_decode( $json );
 
+        ray($event);
+
         if ('transaction.approved' == $event->event && 'approved' == $event->data->status) {
             http_response_code(200);
             $order_details = explode( '_', $event->data->initial_reference);

@@ -30,6 +30,16 @@ $form_fields = array(
         ),
         'default' => 'live',
     ),
+    'gateway' => array(
+        'title'   => 'Payment Gateway',
+        'type'    => 'select',
+        'description'   => 'Select a payment gateway that correspond to what you activated on your PayFlexi account',
+        'options' => array(
+            'stripe'    => 'Stripe',
+            'paystack' => 'Paystack'
+        ),
+        'default' => 'stripe',
+    ),
 	'test_api_credentials' => array(
 		'title'       => 'Enter your test credentials here and connect your Payflexi account',
 		'type'        => 'title',
@@ -76,40 +86,6 @@ $form_fields = array(
         'description' => 'This is the description that the customer will see on checkout page',
         'desc_tip'    => true,
     ),
-    // 'on_cart_page'  => array(
-    //     'title'       => __( 'Enable PayFlexi Flexible Checkout in cart', 'payflexi-flexible-checkout-for-woocommerce' ),
-    //     'label'       => __( 'Enable PayFlexi Flexible Checkout in cart', 'payflexi-flexible-checkout-for-woocommerce' ),
-    //     'type'        => 'checkbox',
-    //     'description' => __('Enable this to allow customers to shop using PayFlexi Flexible Checkout directly from the cart with no login or address input needed', 'payflexi-flexible-checkout-for-woocommerce') . '.<br>' .
-    //     __('Please note that for PayFlexi Flexible Checkout, shipping must be calculated in a callback from the PayFlexi API, without any knowledge of the customer. This means that PayFlexi Flexible Checkout may not be compatible with all Shipping plugins or setup if your product is a physical product that requires shipping. You should test that your setup works if you intend to provide this feature.', 'payflexi-flexible-checkout-for-woocommerce'),
-    //     'default'     => 'yes',
-    // ),
-    // 'on_single_product_page'  => array(
-    //     'title'       => __( 'Enable PayFlexi Flexible Checkout for single products', 'payflexi-flexible-checkout-for-woocommerce'),
-    //     'label'       => __( 'Enable PayFlexi Flexible Checkout for single products', 'payflexi-flexible-checkout-for-woocommerce'),
-    //     'type'        => 'select',
-    //     'options' => array(
-    //         'none' => __('No products','payflexi-flexible-checkout-for-woocommerce'),
-    //         'some' => __('Some products', 'payflexi-flexible-checkout-for-woocommerce'),
-    //         'all' => __('All products','payflexi-flexible-checkout-for-woocommerce')
-    //     ), 
-    //     'description' => __('Enable this to allow customers to buy a product using PayFlexi Flexible Checkout directly from the product page. If you choose \'some\', you must enable this on the relevant products', 'payflexi-flexible-checkout-for-woocommerce'),
-    //     'default'     => 'all',
-    // ),
-    // 'on_catalog_page' => array(
-    //     'title'       => __( 'Add \'Buy now\' button on catalog pages too', 'payflexi-flexible-checkout-for-woocommerce' ),
-    //     'label'       => __( 'Add the button for all relevant products on catalog pages', 'payflexi-flexible-checkout-for-woocommerce' ),
-    //     'type'        => 'checkbox',
-    //     'description' => __('If PayFlexi Flexible Checkout is enabled for a product, add the \'Buy now\' button to catalog pages too', 'payflexi-flexible-checkout-for-woocommerce'),
-    //     'default'     => 'no',
-    // ),
-    // 'gateway_send_image' => array(
-    //     'title' => __('Send product images to Payflexi', 'payflexi-flexible-checkout-for-woocommerce'),
-    //     'type' => 'checkbox',
-    //     'default' => 'yes',
-    //     'description' => __('Send product thumbnails to Payflexi to display in Payflexi checkout', 'payflexi-flexible-checkout-for-woocommerce'),
-    //     'desc_tip' => true
-    // ),
     'popup_information_options'   => array(
         'title' => 'Popup Information options',
         'type'  => 'title',
