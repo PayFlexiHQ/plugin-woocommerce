@@ -1,15 +1,15 @@
 <?php
 /*
-    Plugin Name: PayFlexi Flexible Payment & Fast Checkout
+    Plugin Name: PayFlexi Flexible Payment Plans for WooCommerce
     Plugin URI: https://developers.payflexi.co
-    Description: Enable you customer to pay in flexible instalments with one-click checkout
-    Version: 1.2.0
+    Description: PayFlexi flexible payment plans plugin for Woocommerce is a payment option that allows you to accept automated installment or one-time payments from your customers.
+    Version: 1.3.0
     Author: PayFlexi
     Author URI: https://payflexi.co
     License: GPLv2 or later
     License URI: http://www.gnu.org/licenses/gpl-2.0.txt
     WC requires at least: 3.8.0
-    WC tested up to: 5.2.2
+    WC tested up to: 5.5.1
 */
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( defined('PAYFLEXI_FLEXIBLE_CHECKOUT_VERSION')) {
 	return;
 } else {
-	define('PAYFLEXI_FLEXIBLE_CHECKOUT_VERSION', '1.1.0');
+	define('PAYFLEXI_FLEXIBLE_CHECKOUT_VERSION', '1.3.0');
 }
 
 if (!defined('PAYFLEXI_FLEXIBLE_CHECKOUT_DIR')) {

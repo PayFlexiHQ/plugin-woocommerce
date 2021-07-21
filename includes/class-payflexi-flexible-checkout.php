@@ -26,6 +26,18 @@ class PayFlexi_Flexible_Checkout {
      */
     public $version;
     /**
+     * Plugins Path
+     *
+     * @since    1.1.0
+     * @access   protected
+     */
+    public $ameliaBookingPluginPath;
+    public $rnbRentalBookingPluginPath;
+    public $eventOnWordPressEventPluginPath;
+    public $calendaristaPluginPath;
+    public $wooCommerceAppointmentsPluginPath;
+    public $bookedAppointmentPluginPath;
+    /**
      * Define the core functionality of the plugin.
      *
      * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -36,6 +48,12 @@ class PayFlexi_Flexible_Checkout {
      */
     public function __construct() {
 		$this->version = '1.1.0';
+        $this->ameliaBookingPluginPath = 'ameliabooking/ameliabooking.php';
+        $this->rnbRentalBookingPluginPath = 'woocommerce-rental-and-booking/redq-rental-and-bookings.php';
+        $this->eventOnWordPressEventPluginPath = 'eventON/eventon.php';
+        $this->calendaristaPluginPath = 'calendarista/Calendarista.php';
+        $this->wooCommerceAppointmentsPluginPath = 'woocommerce-appointments/woocommerce-appointments.php';
+        $this->bookedAppointmentPluginPath = 'booked/booked.php';
         $this->load_dependencies();
 		$this->woo_gateway_hooks();
 		$prefix = is_network_admin() ? 'network_admin_' : '';
@@ -197,11 +215,7 @@ class PayFlexi_Flexible_Checkout {
             $order = wc_get_order( $order_id );
     
             $payment_method = method_exists( $order, 'get_payment_method' ) ? $order->get_payment_method() : $order->payment_method;
-            
-            // if( $this->id !== $payment_method ) {
-            //     return;
-            // }
-
+    
             $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
             wp_enqueue_script( 'payflexi_flexible_checkout_sdk', 'https://payflexi.co/js/v1/global-payflexi.js', array(), null, false);
             wp_enqueue_script(
@@ -216,6 +230,75 @@ class PayFlexi_Flexible_Checkout {
             );            
         
             if ( is_checkout_pay_page() && get_query_var( 'order-pay' ) ) {
+
+                foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+
+                    //Travelo Hotel Booking Theme
+                    if('Travelo' == get_option( 'template' ) ) {
+                        $traveloBookingName = $cart_item['data']->name;
+                        $traveloBookingMeta = isset($traveloBookingName) ? $traveloBookingName : null;
+                        if( $traveloBookingMeta){
+                            $pattern = "#\d{2}/\d{2}/\d{4}#";
+                            preg_match_all($pattern, $traveloBookingMeta, $matches);
+                            $bookingDate = $matches[0][0];
+                            $booking_date = \DateTime::createFromFormat('d/m/Y', $bookingDate)->format('Y-m-d');
+                        }
+                    }
+
+                    //Adventure Tour Theme
+                    if('adventure-tours' == get_option( 'template' ) ) {
+                        $booking_date = isset($cart_item['date']) ? $cart_item['date'] : null;
+                    }
+
+                    //Traveler Booking Theme
+                    if('traveler' == get_option( 'template' ) ) {
+                        $travelerBookingMeta = isset($cart_item['st_booking_data']) ? $cart_item['st_booking_data'] : null;
+                        if($travelerBookingMeta){
+                            $booking_date = date('Y-m-d', strtotime($travelerBookingMeta['check_in']));
+                        }
+                    }
+
+                    if ( is_plugin_active( $this->bookedAppointmentPluginPath) ) {
+                        $bookedPluginMeta = $cart_item['booked_wc_appointment_timerange'];
+                        $bookedPluginBookingMeta = isset($bookedPluginMeta) ? $bookedPluginMeta : null;
+                        if($bookedPluginBookingMeta){
+                            $pattern = "/(\w+) (\d{1,2}), (\d{4})/";
+                            preg_match_all($pattern, $bookedPluginBookingMeta, $matches);
+                            $bookingDate = $matches[0][0];
+                            $booking_date = \DateTime::createFromFormat('F j, Y', $bookingDate)->format('Y-m-d');
+                        }
+                    }
+
+                    if ( is_plugin_active( $this->wooCommerceAppointmentsPluginPath) ) {
+                        $booking_date = isset($cart_item['appointment']['_date']) ? $cart_item['appointment']['_date'] : null;
+                    }
+
+                    if ( is_plugin_active( $this->calendaristaPluginPath ) ) {
+                        $calendaristaMeta = unserialize(stripslashes($cart_item['_calendarista_summary']));
+                        $calendaristaBookingMeta = isset($calendaristaMeta) ? $calendaristaMeta : null;
+                        if($calendaristaBookingMeta){
+                            $pattern = "/(\d{2}\/\d{2}\/\d{4})/";
+                            preg_match_all($pattern, $calendaristaBookingMeta, $matches);
+                            $bookingDate = $matches[0][0];
+                            $booking_date = \DateTime::createFromFormat('d/m/Y', $bookingDate)->format('Y-m-d');
+                        }
+                    }
+    
+                    if ( is_plugin_active( $this->ameliaBookingPluginPath ) ) {
+                        $ameliaBookingMeta = isset($cart_item['ameliabooking']) ? $cart_item['ameliabooking'] : null;
+                        if($ameliaBookingMeta){
+                            $booking_date = date('Y-m-d', strtotime($ameliaBookingMeta['bookingStart']));
+                        }
+                    }
+
+                    if ( is_plugin_active( $this->rnbRentalBookingPluginPath) ) {
+                        $rnbWocommerceRentalBookingMeta = isset($cart_item['rental_data']) ? $cart_item['rental_data'] : null;
+                        if($rnbWocommerceRentalBookingMeta){
+                            $booking_date = $rnbWocommerceRentalBookingMeta['pickup_date'];
+                        }
+                    }
+                }
+
                 $email = method_exists( $order, 'get_billing_email' ) ? $order->get_billing_email() : $order->billing_email;
                 $first_name = method_exists( $order, 'get_billing_first_name' ) ? $order->get_billing_first_name() : $order->billing_first_name;
                 $last_name  = method_exists( $order, 'get_billing_last_name' ) ? $order->get_billing_last_name() : $order->billing_last_name;
@@ -224,12 +307,35 @@ class PayFlexi_Flexible_Checkout {
     
                 $line_items = $order->get_items();
                 $products = '';
+
                 foreach ( $line_items as $item_id => $item ) {
+
+                    if('goto' == get_option( 'template' ) ) {
+                        $gotoBookingDate = wc_get_order_item_meta( $item_id, 'booking_date', true);
+                        $gotoBookingMeta = isset($gotoBookingDate) ? $gotoBookingDate : null;
+                        if($gotoBookingMeta){
+                            $booking_date = date('Y-m-d', strtotime($gotoBookingMeta));
+                        }
+                    }
+
+                    if ( is_plugin_active( $this->eventOnWordPressEventPluginPath ) ) {
+                        $eventOnEventTimeMeta = wc_get_order_item_meta($item_id, 'Event-Time', true);
+                        $eventOnEventTimeMeta = isset($eventOnEventTimeMeta) ? $eventOnEventTimeMeta : null;
+                        if($eventOnEventTimeMeta){
+                            $eventOnEventDates = explode('-', $eventOnEventTimeMeta);
+                            $eventOnEventDate = trim($eventOnEventDates[0]);
+                            $booking_date = date('Y-m-d', strtotime($eventOnEventDate));
+                        }
+                    }
+
                     $name     = $item['name'];
                     $quantity = $item['qty'];
                     $products .= $name . ' (Qty: ' . $quantity . ')';
                     $products .= ' | ';
                 }
+
+                $booking_date = isset($booking_date) ? $booking_date : null;
+
                 $products = rtrim( $products, ' | ' );
     
                 $the_order_id   = method_exists( $order, 'get_id' ) ? $order->get_id() : $order->id;
@@ -242,6 +348,7 @@ class PayFlexi_Flexible_Checkout {
                     $payflexi_flexible_checkout_params['txnref']  = $txnref;
                     $payflexi_flexible_checkout_params['currency'] = get_woocommerce_currency();
                     $payflexi_flexible_checkout_params['products'] = $products;
+                    $payflexi_flexible_checkout_params['booking_date']  = $booking_date;
                 }
 
                 $payflexi_flexible_checkout_params['meta_order_id'] = $order_id;

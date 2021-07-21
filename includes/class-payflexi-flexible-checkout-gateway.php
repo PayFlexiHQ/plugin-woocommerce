@@ -10,8 +10,8 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
     */
     public function __construct() {
         $this->id = 'payflexi-flexible-checkout';
-        $this->method_title = 'Payflexi Flexible Checkout';
-		$this->method_description = sprintf( 'Payflexi Flexible Checkout allow your customers to pay in installment and also with one-click checkout <a href="%1$s" target="_blank">Sign up</a> for a Payflexi account, and <a href="%2$s" target="_blank">get your API keys</a>.', 'https://payflexi.co', 'https://merchant.payflexi.co/settings' );
+        $this->method_title = 'Pay in Installment';
+		$this->method_description = sprintf( 'PayFlexi payment plans for WooCommerce allow your customers to pay in installment and also with one-click checkout <a href="%1$s" target="_blank">Sign up</a> for a Payflexi account, and <a href="%2$s" target="_blank">get your API keys</a>.', 'https://payflexi.co', 'https://merchant.payflexi.co/settings' );
         $this->has_fields = true;
 
         $this->supports = array(
@@ -33,8 +33,8 @@ class Payflexi_Flexible_Checkout_Gateway extends WC_Payment_Gateway {
         $this->testmode = 'test' === $this->env;
             
         if ( $this->testmode ) {
-			$this->description .= ' ' . sprintf( __( 'TEST MODE ENABLED. You can only use testing accounts. See the <a href="%s" target="_blank">Payflexi Testing Guide</a> for more details.', 'payflexi-flexible-checkout' ), 'https://developers.payflexi.co/' );
-			$this->description  = trim( $this->description );
+			$this->description = sprintf( __( 'TEST MODE ENABLED. You can only use testing accounts. See the <a href="%s" target="_blank">PayFlexi Testing Guide</a> for more details.', 'payflexi-flexible-checkout' ), 'https://developers.payflexi.co/' );
+			$this->description = trim( $this->description );
 		}
 		
 		$this->public_key  = $this->get_option( $this->env . '_api_public_key' );

@@ -61,6 +61,13 @@
 
         var amount = Number( payflexi_flexible_checkout_params.amount );
 
+        if(payflexi_flexible_checkout_params.booking_date){
+            var bookingDate = new Date( payflexi_flexible_checkout_params.booking_date );
+            var endDate = {day: bookingDate.getDate(), month: bookingDate.getMonth() + 1, year: bookingDate.getFullYear()};
+        }else{
+            var endDate = null;
+        }
+
         var payflexi_callback = function( response ) {
             $form.append( '<input type="hidden" class="payflexi_txnref" name="payflexi_txnref" value="' + response.reference + '"/>' );
             payflexi_flexible_checkout_payment_submit = true;
@@ -86,6 +93,7 @@
             name: payflexi_flexible_checkout_params.name,
             currency: payflexi_flexible_checkout_params.currency,
             reference: payflexi_flexible_checkout_params.txnref,
+            endDate: endDate,
             meta: PayflexiFlexibleCheckoutPaymentCustomFields(),
             onSuccess: payflexi_callback,
             onExit: function() {
