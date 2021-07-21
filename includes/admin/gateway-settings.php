@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 $form_fields = array(
     'enabled' => array(
         'title'       => 'Enable/Disable',
-        'label'       => 'Enable Payflexi Flexible Checkout',
+        'label'       => 'Enable Pay in Installment via PayFlexi',
         'type'        => 'checkbox',
-        'description' => 'Enable Payflexi as a payment option on the checkout page.',
+        'description' => 'Enable PayFlexi as a payment option on the checkout page.',
         'default'     => 'no',
         'desc_tip'    => true
     ),
@@ -17,7 +17,7 @@ $form_fields = array(
         'title'         => 'Title',
         'type'          => 'text',
         'description'   => 'This controls the payment method title which the user sees during checkout.',
-        'default'       => 'PayFlexi Flexible Checkout',
+        'default'       => 'Pay in Installment',
         'desc_tip'      => true,
     ),
     'env' => array(
@@ -82,7 +82,7 @@ $form_fields = array(
     'description'     => array(
         'title'       => 'Description',
         'type'        => 'text',
-        'default'     => 'Pay via Payflexi; checkout with one-click or pay in instalments.',
+        'default'     => 'Use PayFlexi to spread the cost of this order over several installments with 0% interest. ',
         'description' => 'This is the description that the customer will see on checkout page',
         'desc_tip'    => true,
     ),
