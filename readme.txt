@@ -3,7 +3,7 @@ Contributors: stanwarri
 Plugin URI: https://payflexi.co
 Tags: payment in multiple instalments, paystack one-click checkout, flutterwave one-click checkout, stripe one-click checkout, payflexi, splits payment, woocommerce, express checkout, recurring payments
 Requires at least: 4.7
-Tested up to: 5.7.0
+Tested up to: 5.8
 Requires PHP: 7.0
 Stable tag: 1.3.0
 License: GPLv2 or later
@@ -175,7 +175,18 @@ Yes, on the developers page on your PayFlexi merchant dashboard, create a test u
 == Changelog ==
 
 = 1.3.0 - July 21, 2021 =
+*  Updated support for Wordpress 5.8 
 *  Added support for bookings, events, ticketing & appointments payment plans
+- [Appointments for WooCommerce](https://bookingwp.com/plugins/woocommerce-appointments/)
+- [Adventure Tours - WordPress Tour/Travel Theme](https://themeforest.net/item/adventure-tours-wordpress-tourtravel-theme/12781942/)
+- [Goto - Tour & Travel WordPress Theme](https://themeforest.net/item/goto-tour-travel-wordpress-theme/21822828/)
+- [RnB - WooCommerce Booking & Rental Plugin](https://codecanyon.net/item/rnb-woocommerce-rental-booking-system/14835145/)
+- [Amelia - Appointments and Events WordPress Booking Plugin](https://wpamelia.com/)
+- [Travel Booking WordPress Theme](https://themeforest.net/item/traveler-traveltourbooking-wordpress-theme/10822683/)
+- [EventON - WordPress Event Calendar Plugin](https://codecanyon.net/item/eventon-wordpress-event-calendar-plugin/1211017/)
+- [Calendarista  WordPress booking plugin](https://www.calendarista.com/)
+- [Travelo -­ Travel/Tour Booking Responsive WordPress Theme](https://themeforest.net/item/travelo-traveltour-booking-wordpress-theme/9806696)
+- [Booked - Appointment Booking for WordPress](https://codecanyon.net/item/booked-appointments-appointment-booking-for-wordpress/9466968)
 
 = 1.2.0 - April 24, 2021 =
 *  Added support for Paystack payment gateway
